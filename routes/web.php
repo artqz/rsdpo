@@ -54,6 +54,7 @@ Route::get('admin/questions/create', 'Admin\QuestionsController@create');
 Route::post('admin/questions', 'Admin\QuestionsController@store');
 Route::get('admin/questions/{id}', 'Admin\QuestionsController@show');
 Route::post('admin/questions/{id}', 'Admin\QuestionsController@update');
+Route::post('admin/questions/{id}/upload_image', 'Admin\QuestionsController@upload_image');
 
 /* --- Ответы */
 Route::get('admin/questions/{id}/answers/create', 'Admin\AnswersController@create');

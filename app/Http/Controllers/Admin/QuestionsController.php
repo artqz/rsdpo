@@ -6,8 +6,9 @@ use App\Answer;
 use App\Http\Controllers\Controller;
 use App\Program;
 use App\Question;
-use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class QuestionsController extends Controller
 {
@@ -61,6 +62,27 @@ class QuestionsController extends Controller
         return redirect('admin/questions/'. $id)
             ->with([
                 'flash_message' => 'Вы успешно обновили вопрос '.$request->input('name'),
+                'flash_message_status' => 'success',
+            ]);
+    }
+    public function upload_image(Request $request, $id)
+    {
+        $this->validate($request, [
+            'image' => 'required|mimes:png,jpg,jpeg,gif|max:20000'
+        ]);
+
+        $image = $request->file('image');
+
+        $path = Storage::disk('public')->putFile('questions', new File($image));
+
+        Question::where('id', $id)
+            ->update([
+                'image' => $path
+            ]);
+
+        return redirect('admin/questions/'. $id)
+            ->with([
+                'flash_message' => 'Вы успешно обновили изображение вопроса',
                 'flash_message_status' => 'success',
             ]);
     }

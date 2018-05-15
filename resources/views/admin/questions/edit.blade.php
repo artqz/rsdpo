@@ -26,6 +26,22 @@
         {{ Form::submit('Изменить', ['class' => 'btn btn-success']) }}
         {{ Form::close() }}
         <br>
+        <h2>Изображение для вопроса</h2>
+        <hr>
+        @if($question->image)
+            <img src="{{Illuminate\Support\Facades\Storage::url($question->image)}}" alt="{{ $question->name }}" height="200px">
+        @endif
+        <br><br>
+        {{ Form::open(['url' => 'admin/questions/'.$question->id.'/upload_image', 'method' => 'post', 'files' => 'true', 'enctype'=>'multipart/form-data']) }}
+            <div class="form-group">
+                {{ Form::label('image', 'Изображение') }}
+                {{ Form::file('image', ['class' => 'form-control']) }}
+                <small id="imageHelp" class="form-text text-muted">Иногда необходимо увидеть изображение чтобы ответить.</small>
+                <small id="imageHelp" class="text-danger">{{ $errors->first('image') }}</small>
+            </div>
+            {{ Form::submit('Обновить', ['class' => 'btn btn-success']) }}
+        {{ Form::close() }}
+        <br>
         <h2>Варианты ответов</h2>
         <hr>
         <div class="float-right"><a href="{{ url('admin/questions/'. $question->id .'/answers/create') }}" class="btn btn-success">Добавить ответ</a></div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Material;
 use App\Program;
+use App\Question;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -29,6 +30,7 @@ class BaseController extends Controller
     public function test($id)
     {
         $program = Program::where('id', $id)->first();
-        return view('base.programs.test', compact('program'));
+        $questions = Question::where('program_id', $program->id)->inRandomOrder()->get();
+        return view('base.programs.test', compact('program', 'questions'));
     }
 }
