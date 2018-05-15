@@ -21,7 +21,7 @@ class MaterialsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'doc' => 'required|mimes:txt|max:20000'
+            'doc' => 'required|mimes:pdf|max:20000'
         ]);
 
         $doc = $request->file('doc');

@@ -52,3 +52,4 @@ Route::get('admin/materials/{id}/restore', 'Admin\MaterialsController@restore');
 /* --- Учебные база */
 Route::get('base', 'BaseController@index');
 Route::get('base/programs/{id}', 'BaseController@index_programs');
+Route::get('base/materials/{id}', 'BaseController@show_materials');

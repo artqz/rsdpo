@@ -14,4 +14,9 @@ class Category extends Model
     {
         return $this->belongsTo('App\Program');
     }
+
+    public function materials()
+    {
+        return $this->hasMany('App\Material');
+    }
 }
