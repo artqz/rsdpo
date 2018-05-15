@@ -48,8 +48,21 @@ Route::post('admin/categories/{id}/materials', 'Admin\MaterialsController@store'
 Route::get('admin/materials/{id}/delete', 'Admin\MaterialsController@delete');
 Route::get('admin/materials/{id}/restore', 'Admin\MaterialsController@restore');
 
+/* --- Вопросы */
+Route::get('admin/questions', 'Admin\QuestionsController@index');
+Route::get('admin/questions/create', 'Admin\QuestionsController@create');
+Route::post('admin/questions', 'Admin\QuestionsController@store');
+Route::get('admin/questions/{id}', 'Admin\QuestionsController@show');
+Route::post('admin/questions/{id}', 'Admin\QuestionsController@update');
+
+/* --- Ответы */
+Route::get('admin/questions/{id}/answers/create', 'Admin\AnswersController@create');
+Route::post('admin/questions/{id}/answers', 'Admin\AnswersController@store');
+Route::get('admin/answers/{id}', 'Admin\AnswersController@show');
+
 /* Приложение */
 /* --- Учебные база */
 Route::get('base', 'BaseController@index');
 Route::get('base/programs/{id}', 'BaseController@index_programs');
+Route::get('base/programs/{id}/test', 'BaseController@test');
 Route::get('base/materials/{id}', 'BaseController@show_materials');

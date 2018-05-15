@@ -26,4 +26,9 @@ class BaseController extends Controller
         $material = Material::where('id', $id)->first();
         return view('base.materials.index', compact('material'));
     }
+    public function test($id)
+    {
+        $program = Program::where('id', $id)->first();
+        return view('base.programs.test', compact('program'));
+    }
 }
