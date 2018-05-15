@@ -48,4 +48,24 @@ class AnswersController extends Controller
         $answer = Answer::where('id', $id)->first();
         return view('admin.questions.answers.edit', compact( 'answer'));
     }
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'correct' => 'required'
+        ]);
+
+        $answer = Answer::where('id', $id)->first();
+
+        Answer::where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                'correct' =>$request->input('correct')
+            ]);
+        return redirect('admin/questions/'. $answer->question->id)
+            ->with([
+                'flash_message' => 'Вы успешно обновили вариант ответа',
+                'flash_message_status' => 'success',
+            ]);
+    }
 }

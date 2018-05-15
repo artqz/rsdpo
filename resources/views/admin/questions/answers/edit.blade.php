@@ -7,7 +7,7 @@
     {!! Breadcrumbs::render('admin.categories.create') !!}
     <h1>Редактировать вариант ответа на вопрос</h1>
     <hr>
-    {{ Form::open(['url' => 'admin/answer/'.$answer->id, 'method' => 'post']) }}
+    {{ Form::open(['url' => 'admin/answers/'.$answer->id, 'method' => 'post']) }}
     <div class="form-group">
         {{ Form::label('name', 'Ответ') }}
         {{ Form::text('name', $answer->name, ['placeholder' => 'Вызвать скорую', 'class' => 'form-control']) }}
