@@ -38,12 +38,6 @@
         <small id="nameHelp" class="text-danger">{{ $errors->first('name') }}</small>
     </div>
     <div class="form-group">
-        {{ Form::label('birthdate', 'Дата рождения') }}
-        {{ Form::date('birthdate', null, ['class' => 'form-control']) }}
-        <small id="birthdateHelp" class="form-text text-muted">Дата рождения сотрудника, необходима для автонапоминания о дне рождении.</small>
-        <small id="birthdateHelp" class="text-danger">{{ $errors->first('birthdate') }}</small>
-    </div>
-    <div class="form-group">
         {{ Form::label('password', 'Пароль') }}
         {{ Form::password('password', ['placeholder' => '******', 'class' => 'form-control']) }}
         <small id="passwordHelp" class="form-text text-muted">Пароль от учетной записи сатрудника, рекомендуется предупредить сотрудника о необходимости смены стандартного пароля.</small>

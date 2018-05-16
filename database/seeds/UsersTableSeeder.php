@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
             'rang' => 'Иженер',
             'name' => 'Кузнецов А.А.',
             'email' => 'djoctuk@yandex.ru',
-            'birthdate' => '1989-07-11',
             'password' => bcrypt(110789),
             'ip_address' => '127.0.0.1',
+            'is_verified' => true,
             'role_id' => 1
         ]);
         \App\User::create([
@@ -26,20 +26,30 @@ class UsersTableSeeder extends Seeder
             'rang' => 'Преподаватель по Охране труда',
             'name' => 'Калашникова О.В.',
             'email' => 'info@serov112.ru',
-            'birthdate' => '1989-07-11',
             'password' => bcrypt(110789),
             'ip_address' => '127.0.0.1',
+            'is_verified' => true,
             'role_id' => 2
         ]);
         \App\User::create([
             'login' => 'bochkarev',
-            'rang' => 'Преподаватель по Пожарно-техническому минимуму',
+            'rang' => 'Преподаватель',
             'name' => 'Бочкарев П.И.',
             'email' => 'bpi@serov112.ru',
-            'birthdate' => '1989-07-11',
             'password' => bcrypt(110789),
             'ip_address' => '127.0.0.1',
+            'is_verified' => true,
             'role_id' => 2
+        ]);
+        \App\User::create([
+            'login' => 'test',
+            'rang' => 'Преподаватель',
+            'name' => 'Бочкарев П.И.',
+            'email' => 'test@serov112.ru',
+            'password' => bcrypt(110789),
+            'ip_address' => '127.0.0.1',
+            'is_verified' => false,
+            'role_id' => 4
         ]);
     }
 }

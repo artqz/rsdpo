@@ -11,6 +11,7 @@
     <a name="info"></a>
     <h2>Информация о пользователе</h2>
     {{ Form::open(['url' => 'admin/users/'. $user->id .'/update_info', 'method' => 'post']) }}
+        @if(Auth::user()->role_id == 1)
         <div class="form-group">
             {{ Form::label('login', 'Логин') }}
             {{ Form::text('login', $user->login, ['placeholder' => 'kuznetsov', 'class' => 'form-control']) }}
@@ -18,11 +19,23 @@
             <small id="loginHelp" class="text-danger">{{ $errors->first('login') }}</small>
         </div>
         <div class="form-group">
+            {{ Form::label('role_id', 'Роль') }}
+            {{ Form::select('role_id', $roles, $user->role_id, ['id' => 'role_id', 'class' => 'form-control']) }}
+            <small id="roleHelp" class="text-danger">{{ $errors->first('role_id') }}</small>
+        </div>
+        <div class="form-group">
             {{ Form::label('rang', 'Должность') }}
             {{ Form::text('rang', $user->rang, ['placeholder' => 'Инженер', 'class' => 'form-control']) }}
             <small id="rangHelp" class="form-text text-muted">Занимаемая должность сотрудника.</small>
             <small id="rangHelp" class="text-danger">{{ $errors->first('rang') }}</small>
         </div>
+        <div class="form-group">
+            {{ Form::label('is_verified', 'Активация') }}
+            {{ Form::select('is_verified', [false => 'Отключен', true => 'Активирован'], $user->is_verified, ['id' => 'is_verified', 'class' => 'form-control']) }}
+            <small id="rangHelp" class="form-text text-muted">Если человек оплатил, то можно активировать аккаунт.</small>
+            <small id="verifiedHelp" class="text-danger">{{ $errors->first('is_verified') }}</small>
+        </div>
+        @endif
         <div class="form-group">
             {{ Form::label('email', 'Эл. почта') }}
             {{ Form::text('email', $user->email, ['placeholder' => 'info@serov112.ru', 'class' => 'form-control']) }}
@@ -34,12 +47,6 @@
             {{ Form::text('name', $user->name, ['placeholder' => 'Кузнецов А.А.', 'class' => 'form-control']) }}
             <small id="nameHelp" class="form-text text-muted">Фамилия и инициалы сотрудника.</small>
             <small id="nameHelp" class="text-danger">{{ $errors->first('name') }}</small>
-        </div>
-        <div class="form-group">
-            {{ Form::label('birthdate', 'Дата рождения') }}
-            {{ Form::date('birthdate', $user->birthdate, ['class' => 'form-control']) }}
-            <small id="birthdateHelp" class="form-text text-muted">Дата рождения сотрудника, необходима для автонапоминания о дне рождении.</small>
-            <small id="birthdateHelp" class="text-danger">{{ $errors->first('birthdate') }}</small>
         </div>
         <div class="form-group">
             {{ Form::button('<i class="fa fa-check-circle-o" aria-hidden="true"></i> Изменить', ['type' => 'submit', 'class' => 'btn btn-success']) }}

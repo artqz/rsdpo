@@ -16,7 +16,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->first();
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::pluck('name', 'id');
+        return view('admin.users.edit', compact('user', 'roles'));
     }
     public function create()
     {
@@ -37,7 +38,6 @@ class UserController extends Controller
             'rang' => $request->input('rang'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'birthdate' => $request->input('birthdate'),
             'password' => bcrypt($request->input('password')),
             'ip_address' => $request->ip(),
             'role_id' => $request->input('role_id')
@@ -54,6 +54,7 @@ class UserController extends Controller
             'login' => 'required|string|max:255|regex:/^[\w-]*$/|unique:users,login,'.$id,
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'role_id' => 'required'
         ]);
         if ($validator->fails()) {
             return redirect(url()->previous() . '#info')
@@ -66,7 +67,7 @@ class UserController extends Controller
                 'rang' => $request->input('rang'),
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'birthdate' => $request->input('birthdate'),
+                'role_id' => $request->input('role_id')
             ]);
         return redirect(url()->previous() . '#info')
             ->with([

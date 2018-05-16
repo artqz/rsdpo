@@ -19,11 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('rang');
             $table->string('photo')->default('default.jpg');
-            $table->date('birthdate');
             $table->string('email')->unique();
             $table->string('password');
             $table->ipAddress('ip_address');
             $table->boolean('is_hide')->default(false);
+            $table->boolean('is_verified')->default(false);
             $table->integer('role_id');
             $table->rememberToken();
             $table->timestamps();

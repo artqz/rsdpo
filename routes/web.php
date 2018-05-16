@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /* --- Пользователи */
 Route::get('admin/users', 'Admin\UserController@index');
 Route::get('admin/users/create', 'Admin\UserController@create');
@@ -64,8 +60,14 @@ Route::post('admin/answers/{id}', 'Admin\AnswersController@update');
 
 
 /* Приложение */
+Auth::routes();
+
+/* --- Главная */
+Route::get('/', 'HomeController@index');
+Route::get('/register', 'HomeController@register');
+
 /* --- Учебные база */
-Route::get('base', 'BaseController@index');
+Route::get('base', 'BaseController@index')->middleware('auth', 'verified');
 Route::get('base/programs/{id}', 'BaseController@index_programs');
 Route::get('base/programs/{id}/test', 'BaseController@test');
 Route::get('base/materials/{id}', 'BaseController@show_materials');
