@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Admin;
+use App\Program;
 use App\Role;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -17,7 +19,8 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
         $roles = Role::pluck('name', 'id');
-        return view('admin.users.edit', compact('user', 'roles'));
+        $programs = Program::where('is_hide', false)->get();
+        return view('admin.users.edit', compact('user', 'roles', 'programs'));
     }
     public function create()
     {
@@ -146,5 +149,34 @@ class UserController extends Controller
                 'flash_message' => 'Вы успешно восстановили профиль '. $user->login,
                 'flash_message_status' => 'success',
             ]);
+    }
+    public function add_program(Request $request, $id, $program_id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($user->programs->where('id', $program_id)->count() == 0) {
+            $user->update(['is_verified' => true]);
+            $user->programs()->attach($program_id, ['deleted_at' => Carbon::now()->addWeeks(2)]);
+            return redirect(url()->previous())
+                ->with([
+                    'flash_message' => 'Вы успешно подключили программу',
+                    'flash_message_status' => 'success',
+                ]);
+        }
+        return redirect(url()->previous());
+    }
+    public function delete_program(Request $request, $id, $program_id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($user->programs->where('id', $program_id)->count() > 0) {
+            $user->programs()->detach($program_id);
+            return redirect(url()->previous())
+                ->with([
+                    'flash_message' => 'Вы успешно отключили программу',
+                    'flash_message_status' => 'success',
+                ]);
+        }
+        return redirect(url()->previous());
     }
 }

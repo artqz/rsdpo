@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('admin', 'Admin\AdminController@index')->middleware('auth', 'isAdmin');
 /* --- Пользователи */
 Route::get('admin/users', 'Admin\UserController@index');
 Route::get('admin/users/create', 'Admin\UserController@create');
@@ -21,6 +21,8 @@ Route::post('admin/users/{id}/update_password', 'Admin\UserController@update_pas
 Route::post('admin/users/{id}/update_photo', 'Admin\UserController@update_photo');
 Route::get('admin/users/{id}/delete', 'Admin\UserController@delete');
 Route::get('admin/users/{id}/restore', 'Admin\UserController@restore');
+Route::get('admin/users/{id}/add_program/{program_id}', 'Admin\UserController@add_program');
+Route::get('admin/users/{id}/delete_program/{program_id}', 'Admin\UserController@delete_program');
 
 /* --- Учебные программы */
 Route::get('admin/programs', 'Admin\ProgramsController@index');
@@ -68,6 +70,6 @@ Route::get('/register', 'HomeController@register');
 
 /* --- Учебные база */
 Route::get('base', 'BaseController@index')->middleware('auth', 'verified');
-Route::get('base/programs/{id}', 'BaseController@index_programs');
-Route::get('base/programs/{id}/test', 'BaseController@test');
-Route::get('base/materials/{id}', 'BaseController@show_materials');
+Route::get('base/programs/{id}', 'BaseController@index_programs')->middleware('auth', 'buyer');
+Route::get('base/programs/{id}/test', 'BaseController@test')->middleware('auth', 'buyer');
+Route::get('base/materials/{id}', 'BaseController@show_materials')->middleware('auth', 'buyer');

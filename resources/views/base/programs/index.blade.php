@@ -4,6 +4,8 @@
 
 @section('content')
     <br>
+    {!! Breadcrumbs::render('base.programs') !!}
+
     <h1>Учебная программа - {{ $program->name }}</h1>
     <hr>
     @foreach($categories as $category)

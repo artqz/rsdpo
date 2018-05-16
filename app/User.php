@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    public function programs()
+    {
+        return $this->belongsToMany('App\Program')->withPivot('deleted_at');
+    }
 }

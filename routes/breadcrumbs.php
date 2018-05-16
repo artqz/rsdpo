@@ -5,6 +5,19 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Главная', url('/'));
 });
 
+Breadcrumbs::register('base', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Учебная база', url('base'));
+});
+
+Breadcrumbs::register('base.programs', function($breadcrumbs)
+{
+    $breadcrumbs->parent('base');
+    $breadcrumbs->push('Учебная программа', url('base/programs'));
+});
+
+
 Breadcrumbs::register('admin', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');

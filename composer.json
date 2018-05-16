@@ -11,7 +11,8 @@
         "intervention/image": "2.4.1",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "5.6.x-dev"
+        "laravelcollective/html": "5.6.x-dev",
+        "laravelrus/localized-carbon": "2.0.x-dev"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

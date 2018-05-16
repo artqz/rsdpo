@@ -17,7 +17,7 @@ class CreateProgramUserTable extends Migration
             $table->increments('id');
             $table->integer('program_id');
             $table->integer('user_id');
-            $table->timestamps();
+            $table->timestamp('deleted_at');
         });
     }
 

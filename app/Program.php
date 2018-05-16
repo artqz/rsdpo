@@ -14,4 +14,8 @@ class Program extends Model
     {
         return $this->belongsTo('App\user');
     }
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withPivot('deleted_at');
+    }
 }

@@ -7,6 +7,27 @@
     {!! Breadcrumbs::render('admin.users.show', $user) !!}
     <h1>Редактор пользователя - {{ $user->login }}</h1>
     <hr>
+    <h2>Подключить учебные программы</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Название программы</th>
+            <th>Управление</th>
+        </tr>
+        </thead>
+        @foreach($programs as $program)
+            <tr>
+                <td>{{ $program->name }}</td>
+                <td>
+                    @if($user->programs->where('id', $program->id)->first())
+                        <a href="{{ url('admin/users/'. $user->id .'/delete_program/'.$program->id) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Отключить</a>
+                    @else
+                        <a href="{{ url('admin/users/'. $user->id .'/add_program/'.$program->id) }}" class="btn btn-primary"><i class="fa fa-history" aria-hidden="true"></i> Подключить</a>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </table>
     @if(!$user->is_hide)
     <a name="info"></a>
     <h2>Информация о пользователе</h2>

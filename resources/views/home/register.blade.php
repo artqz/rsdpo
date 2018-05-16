@@ -3,6 +3,7 @@
 @section('title', 'Регистрация')
 
 @section('content')
+
     <br>
     <h1>Регистрация в системе</h1>
     <hr>

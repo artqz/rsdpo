@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'ip_address' => Request::ip(),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_verified' => false,
+            'is_verified' => true,
             'role_id' => 4
         ]);
     }

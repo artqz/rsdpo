@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -153,6 +153,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        //Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -214,6 +215,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+//        'LocalizedCarbon' => Laravelrus\LocalizedCarbon\LocalizedCarbon::class,
+//        'DiffFormatter'   => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
     ],
 
 ];
