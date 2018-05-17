@@ -27,7 +27,7 @@
         <tbody>
         @foreach(Auth::user()->programs as $program)
             <tr>
-                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a></td>
+                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a> <a href="{{ url('base/programs/' . $program->id.'/test') }}">Пройти тест</a></td>
             </tr>
         @endforeach
         </tbody>
