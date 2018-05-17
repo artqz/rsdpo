@@ -6,21 +6,27 @@
     <br>
     <h1>Тест по учебной програме - {{ $program->name }}</h1>
     <hr>
-    @foreach($questions as $key => $question)
-        <div class="card" style="width: 70%;">
-            @if($question->image)
-                <img src="{{Illuminate\Support\Facades\Storage::url($question->image)}}" alt="{{ $question->name }}" class="card-img-top">
-            @endif
-            <div class="card-body">
-                <h5 class="card-title">{{ $key+1 }}. {{ $question->name }}</h5>
-                <div>
-                    @foreach($question->answers as $answer)
-                        {{ $answer->name }}<br>
-                    @endforeach
-                </div>
+    {{ Form::open(['url' => 'base/test/check', 'method' => 'post']) }}
+    @foreach($questions as $index_question => $question)
+        <div class="bs-callout bs-callout-warning" id="callout-alerts-dismiss-use-button">
+            <h4>{{ $index_question+1 }}. {{ $question->name }}</h4>
+            <div class="row">
+                @foreach($question->answers as $j => $answer)
+                <div class="col-lg-6">
+                    <div class="input-group margin">
+                        <span class="input-group-addon">
+                            <input type="radio" name="{{$index_question}}" value="{{ $answer->id }}" {{ old($index_question) == $answer->id ? 'checked' : '' }}>
+                        </span>
+                        <span type="text" class="form-control">{{ $answer->name }}</span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                @endforeach
             </div>
+            @if($errors->first($index_question))
+                <div id="nameHelp" class="text-danger">Вы не выбрали вариант!</div>
+            @endif
         </div>
-        <br>
     @endforeach
-
+    <input type="submit" value="Отправить">
+    {{ Form::close() }}
 @endsection

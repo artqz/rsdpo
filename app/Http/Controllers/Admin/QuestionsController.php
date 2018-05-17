@@ -12,9 +12,19 @@ use Illuminate\Http\File;
 
 class QuestionsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $questions = Question::paginate(30);
+        return view('admin.questions.index', compact('questions'));
+    }
+    public function cat_index($program_id)
+    {
+        $questions = Question::where('program_id', $program_id)->paginate(30);
+        return view('admin.questions.index', compact('questions'));
+    }
+    public function search_index(Request $request)
+    {
+        $questions = Question::where('name', 'like', '%'.$request->name.'%')->paginate(100);
         return view('admin.questions.index', compact('questions'));
     }
     public function create()

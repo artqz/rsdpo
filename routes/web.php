@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('admin', 'Admin\AdminController@index')->middleware('auth', 'isAdmin');
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
+
+Route::get('admin', 'Admin\AdminController@index');
 /* --- Пользователи */
 Route::get('admin/users', 'Admin\UserController@index');
 Route::get('admin/users/create', 'Admin\UserController@create');
@@ -48,6 +50,8 @@ Route::get('admin/materials/{id}/restore', 'Admin\MaterialsController@restore');
 
 /* --- Вопросы */
 Route::get('admin/questions', 'Admin\QuestionsController@index');
+Route::get('admin/questions/cat/{program_id}', 'Admin\QuestionsController@cat_index');
+Route::get('admin/questions/search', 'Admin\QuestionsController@search_index');
 Route::get('admin/questions/create', 'Admin\QuestionsController@create');
 Route::post('admin/questions', 'Admin\QuestionsController@store');
 Route::get('admin/questions/{id}', 'Admin\QuestionsController@show');
@@ -59,7 +63,7 @@ Route::get('admin/questions/{id}/answers/create', 'Admin\AnswersController@creat
 Route::post('admin/questions/{id}/answers', 'Admin\AnswersController@store');
 Route::get('admin/answers/{id}', 'Admin\AnswersController@show');
 Route::post('admin/answers/{id}', 'Admin\AnswersController@update');
-
+});
 
 /* Приложение */
 Auth::routes();
@@ -73,3 +77,4 @@ Route::get('base', 'BaseController@index')->middleware('auth', 'verified');
 Route::get('base/programs/{id}', 'BaseController@index_programs')->middleware('auth', 'buyer');
 Route::get('base/programs/{id}/test', 'BaseController@test')->middleware('auth', 'buyer');
 Route::get('base/materials/{id}', 'BaseController@show_materials')->middleware('auth', 'buyer');
+Route::post('base/test/check', 'BaseController@test_check')->middleware('auth');

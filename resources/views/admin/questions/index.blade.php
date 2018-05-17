@@ -11,7 +11,11 @@
         <a href="{{ url('admin/questions/create') }}" class="btn btn-success btn-sm" role="button"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Добавить вопрос</a>
     </div>
 
-    <br><br>
+    <br>
+    {{ Form::open(['url' => 'admin/questions/search', 'method' => 'get']) }}
+        {{ Form::text('name', null, ['placeholder' => 'Поиск...', 'class' => 'form-control']) }}
+    {{ Form::close() }}
+    <br>
     <table class="table table-bordered">
         <thead>
         <tr>
