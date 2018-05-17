@@ -63,6 +63,9 @@ Route::get('admin/questions/{id}/answers/create', 'Admin\AnswersController@creat
 Route::post('admin/questions/{id}/answers', 'Admin\AnswersController@store');
 Route::get('admin/answers/{id}', 'Admin\AnswersController@show');
 Route::post('admin/answers/{id}', 'Admin\AnswersController@update');
+
+/* --- Результаты */
+Route::get('admin/results', 'Admin\ResultsController@index');
 });
 
 /* Приложение */

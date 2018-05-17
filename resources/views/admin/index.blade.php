@@ -9,5 +9,6 @@
     <div>- <a href="{{ url('/admin/users') }}">Управление пользователями</a></div>
     <div>- <a href="{{ url('/admin/programs') }}">Управление учебными программами</a></div>
     <div>- <a href="{{ url('/admin/questions') }}">Добавление учебных вопросов</a></div>
+    <div>- <a href="{{ url('/admin/results') }}">Успешные сдачи</a></div>
 
 @endsection
