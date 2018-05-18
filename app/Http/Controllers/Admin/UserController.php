@@ -14,13 +14,13 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 1) $users = User::paginate(30);
-        else $users = User::where('role_id', 4)->where('is_hide', 0)->paginate(30);
+        else $users = User::where('role_id','>=', 2)->where('is_hide', 0)->paginate(30);
         return view('admin.users.index', compact('users'));
     }
     public function search_index(Request $request)
     {
         if (Auth::user()->role_id == 1) $users = User::where('name', 'like', '%'.$request->name.'%')->paginate(30);
-        else $users = User::where('role_id', 4)->where('is_hide', 0)->where('name', 'like', '%'.$request->name.'%')->paginate(30);
+        else $users = User::where('role_id','>=', 2)->where('is_hide', 0)->where('name', 'like', '%'.$request->name.'%')->paginate(30);
         return view('admin.users.index', compact('users'));
     }
     public function show($id)
