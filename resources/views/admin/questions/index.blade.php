@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    {!! Breadcrumbs::render('admin.programs') !!}
+    {!! Breadcrumbs::render('admin.questions') !!}
     <h1>Список тестовых вопросов</h1>
     <hr>
     <div class="float-right">

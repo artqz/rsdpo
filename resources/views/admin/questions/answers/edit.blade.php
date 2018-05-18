@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    {!! Breadcrumbs::render('admin.categories.create') !!}
+    {!! Breadcrumbs::render('admin.questions.answers', $answer->question) !!}
     <h1>Редактировать вариант ответа на вопрос</h1>
     <hr>
     {{ Form::open(['url' => 'admin/answers/'.$answer->id, 'method' => 'post']) }}

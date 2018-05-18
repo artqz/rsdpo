@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    {!! Breadcrumbs::render('admin.categories.show', $question) !!}
+    {!! Breadcrumbs::render('admin.questions.edit', $question) !!}
     <h1>Редактировать вопрос</h1>
     <hr>
     @if(!$question->is_hide)
@@ -57,7 +57,7 @@
             <tbody>
 
             @foreach ($answers as $answer)
-                <tr {{ ($answer->correct) ? 'class=table-success' : ''}}>
+                <tr class="{{ ($answer->correct) ? 'success' : ''}}">
                     <td>{{ $answer->name }} {{ ($answer->is_hide) ? '(Удален)' : '' }}</td>
                     <td>{{ ($answer->correct) ? 'Верный' : 'Ложный'}}</td>
                     <td>

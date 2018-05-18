@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    {!! Breadcrumbs::render('admin.users') !!}
+    {!! Breadcrumbs::render('admin.results') !!}
     <h1>Список успешных сдач</h1>
     <hr>
 

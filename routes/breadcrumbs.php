@@ -24,6 +24,36 @@ Breadcrumbs::register('admin', function($breadcrumbs)
     $breadcrumbs->push('Панель управления', url('admin'));
 });
 
+Breadcrumbs::register('admin.questions', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Учебные вопросы', url('admin/questions'));
+});
+
+Breadcrumbs::register('admin.questions.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin.questions');
+    $breadcrumbs->push('Добавить вопрос', url('admin/questions/create'));
+});
+
+Breadcrumbs::register('admin.questions.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin.questions');
+    $breadcrumbs->push('Редактировать вопрос', url('admin/questions/edit'));
+});
+
+Breadcrumbs::register('admin.questions.answers', function($breadcrumbs, $question)
+{
+    $breadcrumbs->parent('admin.questions');
+    $breadcrumbs->push($question->name, url('admin/questions/'.$question->id));
+});
+
+Breadcrumbs::register('admin.results', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Успешные сдачи', url('admin/results'));
+});
+
 Breadcrumbs::register('admin.users', function($breadcrumbs)
 {
     $breadcrumbs->parent('admin');

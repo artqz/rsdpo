@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    {!! Breadcrumbs::render('admin.categories.create') !!}
+    {!! Breadcrumbs::render('admin.questions.create') !!}
     <h1>Добавить вопрос для теста</h1>
     <hr>
     {{ Form::open(['url' => 'admin/questions/', 'method' => 'post']) }}
