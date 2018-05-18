@@ -19,7 +19,7 @@
         <tbody>
         @foreach(Auth::user()->programs as $program)
             <tr>
-                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a></td>
+                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a> (действует до: {{ $program->pivot->deleted_at }})</td>
                 <td align="center"><a href="{{ url('base/programs/' . $program->id.'/test') }}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Пройти тест</a></td>
             </tr>
         @endforeach
