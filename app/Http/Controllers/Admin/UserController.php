@@ -38,21 +38,30 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'login' => 'required|string|max:255|regex:/^[\w-]*$/|unique:users',
+            'login' => 'string|max:255|regex:/^[\w-]*$/|unique:users',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'role_id' => 'required',
         ]);
+
+        if ($request->input('role_id') == null) $role_id = 4;
+        if ($request->input('login') == null) $login = str_slug($request->input('name')).'_'.time();
+        if ($request->input('rang') == null) $rang = 'Ученик';
+
         $user = User::create([
-            'login' => $request->input('login'),
+            'login' => $login,
             'rang' => $request->input('rang'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'rang' => $rang,
             'password' => bcrypt($request->input('password')),
             'ip_address' => $request->ip(),
-            'role_id' => $request->input('role_id')
+            'is_verified' => true,
+            'role_id' => $role_id
         ]);
+        \Mail::send('emails.confirm', array('login' => $user->login, 'password' => $request->input('password')), function ($message) use ($user) {
+            $message->to($user->email, $user->name)->subject('Заявка на обучение');
+        });
         return redirect('admin/users/'. $user->id)
             ->with([
                 'flash_message' => 'Вы успешно создали аккаунт '.$request->input('login'),
