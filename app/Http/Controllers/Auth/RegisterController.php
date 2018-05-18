@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return $user = User::create([
+        $user = User::create([
             'login' => str_slug($data['name']).'_'.time(),
             'name' => $data['name'],
             'rang' => "Учащийся",
@@ -74,5 +74,10 @@ class RegisterController extends Controller
             'is_verified' => true,
             'role_id' => 4
         ]);
+        \Mail::send('emails.confirm', array('login' => $user->login), function ($message) use ($user) {
+            $message->to($user->email, $user->name)->subject('Вы подали заявку на обучение');
+        });
+        return $user;
+
     }
 }

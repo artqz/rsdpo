@@ -22,12 +22,14 @@
         <thead>
             <tr>
                 <th>Вам доступны следующие учебные программы:</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         @foreach(Auth::user()->programs as $program)
             <tr>
-                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a> <a href="{{ url('base/programs/' . $program->id.'/test') }}">Пройти тест</a></td>
+                <td>- <a href="{{ url('base/programs/' . $program->id) }}">{{ $program->name }}</a></td>
+                <td align="center"><a href="{{ url('base/programs/' . $program->id.'/test') }}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Пройти тест</a></td>
             </tr>
         @endforeach
         </tbody>
