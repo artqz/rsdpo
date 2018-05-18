@@ -7,15 +7,6 @@
     {!! Breadcrumbs::render('base') !!}
 
     <h1>Учебная база</h1>
-    @if(Auth::user())
-        Вы вошли, как {{ Auth::user()->name }}
-        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Выйти
-        </a>
-    @endif
-    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-        {{ csrf_field() }}
-    </form>
     <hr>
     @if(Auth::user()->programs->count() > 0)
     <table class="table table-bordered">
