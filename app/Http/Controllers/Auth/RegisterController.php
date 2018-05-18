@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'is_verified' => true,
             'role_id' => 4
         ]);
-        \Mail::send('emails.confirm', array('login' => $user->login), function ($message) use ($user) {
+        \Mail::send('emails.confirm', array('login' => $user->login, 'password'=> $data['password']), function ($message) use ($user) {
             $message->to($user->email, $user->name)->subject('Вы подали заявку на обучение');
         });
         return $user;
