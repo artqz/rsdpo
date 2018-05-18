@@ -22,6 +22,12 @@
         <div class="col-md-3">@yield('sidebar')</div>
     </div>
 </div>
+<br><br>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2018 г.</p>
+    </div>
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
