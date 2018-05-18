@@ -110,7 +110,7 @@
     {{ Form::close() }}
     <hr>
     <div class="form-group">
-        <a href="{{ url('admin/users/') }}" class="btn btn-secondary"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Вернуться назад</a>
+        <a href="{{ url('admin/users/') }}" class="btn btn-default"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Вернуться назад</a>
         @if($user->is_hide)
             <a href="{{ url('admin/users/'. $user->id .'/restore') }}" class="btn btn-primary" onclick="return confirm('Вы точно хотите восстановить профиль этого пользователя?')"><i class="fa fa-history" aria-hidden="true"></i> Восстановить</a>
         @else
@@ -120,7 +120,7 @@
     @else
         <p>Данный пользователь удален!</p>
     <div class="form-group">
-        <a href="{{ url('admin/users/') }}" class="btn btn-secondary"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Вернуться назад</a>
+        <a href="{{ url('admin/users/') }}" class="btn btn-default"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Вернуться назад</a>
         @if($user->is_hide)
             <a href="{{ url('admin/users/'. $user->id .'/restore') }}" class="btn btn-primary" onclick="return confirm('Вы точно хотите восстановить профиль этого пользователя?')"><i class="fa fa-history" aria-hidden="true"></i> Восстановить</a>
         @else
