@@ -15,6 +15,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 Route::get('admin', 'Admin\AdminController@index');
 /* --- Пользователи */
 Route::get('admin/users', 'Admin\UserController@index');
+Route::get('admin/users/search', 'Admin\UserController@search_index');
 Route::get('admin/users/create', 'Admin\UserController@create');
 Route::post('admin/users', 'Admin\UserController@store');
 Route::get('admin/users/{id}', 'Admin\UserController@show');

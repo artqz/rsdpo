@@ -11,7 +11,11 @@
         <a href="{{ url('admin/users/create') }}" class="btn btn-success btn-sm" role="button"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Добавить пользователя</a>
     </div>
 
-    <br><br>
+    <br>
+    {{ Form::open(['url' => 'admin/users/search', 'method' => 'get']) }}
+        {{ Form::text('name', null, ['placeholder' => 'Поиск...', 'class' => 'form-control']) }}
+    {{ Form::close() }}
+    <br>
     <table class="table table-bordered">
         <thead>
         <tr>

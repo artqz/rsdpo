@@ -6,13 +6,21 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Validator;
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(30);
+        if (Auth::user()->role_id == 1) $users = User::paginate(30);
+        else $users = User::where('role_id', 4)->paginate(30);
+        return view('admin.users.index', compact('users'));
+    }
+    public function search_index(Request $request)
+    {
+        if (Auth::user()->role_id == 1) $users = User::where('name', 'like', '%'.$request->name.'%')->paginate(30);
+        else $users = User::where('role_id', 4)->where('name', 'like', '%'.$request->name.'%')->paginate(30);
         return view('admin.users.index', compact('users'));
     }
     public function show($id)
